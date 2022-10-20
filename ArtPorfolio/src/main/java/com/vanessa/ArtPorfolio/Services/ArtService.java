@@ -1,13 +1,17 @@
 package com.vanessa.ArtPorfolio.Services;
 
+import java.io.IOException;
+import java.util.List;
 //import java.io.IOException;
 import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 //import org.springframework.util.StringUtils;
 //import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.vanessa.ArtPorfolio.Models.Art;
 import com.vanessa.ArtPorfolio.Repos.ArtRepo;
@@ -23,16 +27,14 @@ public class ArtService {
 	}
 
 //	Get all art works
-	public Stream<Art> allArt() {
-		return artRepo.findAll().stream();
+	public List<Art> allArt() {
+		return artRepo.findAll();
 	}
 
-//	Create one art work
-//	public Art saveArt(MultipartFile file) throws IOException {
-//		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-//		Art artFile = new Art(fileName, file.getContentType(), file.getBytes());
-//		return artRepo.save(artFile);
-//	}
+// Create One Art Work
+	public Art makeArt(Art art) {
+		return artRepo.save(art);
+	}
 
 //	Get all the art of one user
 	public Art getArt(Long id) {
