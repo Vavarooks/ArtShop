@@ -1,5 +1,6 @@
 package com.vanessa.ArtPorfolio.Models;
 
+import java.beans.Transient;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -19,46 +20,51 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="art")
+@Table(name = "art")
 public class Art {
 	public static Art art;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotEmpty(message = "Must input name for piece")
 	@Size(min = 4, message = "Name must have more than four letters.")
 	private String artName;
-	
+
 	@NotEmpty(message = "Must have a description")
 	@Size(min = 4, message = "Description must have more than four letters.")
 	private String artDescription;
-	
+
 //	Relation Ships
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
 //	Saving Image Data???
-	@Lob
-	private byte[] imageData;
+	@Column
 	private String imageName;
-	private String imageType;
-	
+
 // This will not allow the createdAt column to be updated after creation
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdAt;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
-	
+
+	@Transient
+	public String getPhotosImagePath() {
+		if (imageName == null || id == null)
+			return null;
+
+		return "/user-photos/" + id + "/" + imageName;
+	}
+
 //	Constructor
 	public Art() {
-		
+
 	}
-	public Art(String imageName, String imageType, byte[] imageData) {
-		this.imageData = imageData;
-		this.imageType = imageType;
+
+	public Art(String imageName) {
 		this.imageName = imageName;
 	}
 
@@ -113,24 +119,14 @@ public class Art {
 		this.user = user;
 	}
 
-	public byte[] getImageData() {
-		return imageData;
-	}
-	public void setImageData(byte[] imageData) {
-		this.imageData = imageData;
-	}
 	public String getImageName() {
 		return imageName;
 	}
+
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
 	}
-	public String getImageType() {
-		return imageType;
-	}
-	public void setImageType(String imageType) {
-		this.imageType = imageType;
-	}
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}

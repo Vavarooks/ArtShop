@@ -25,7 +25,7 @@
 	<nav class="navbar bg-light">
 		<div class="container-fluid">
 			<a class="btn btn-secondary" href="/view/user">Home</a> <a
-				class="btn btn-secondary" href="/view/gallery">View Your Gallery</a>
+				class="btn btn-secondary" href="/gallery/${user.id}">View Your Gallery</a>
 			<a class="btn btn-secondary" href="/upload/art">Upload a piece</a>
 			<%-- 			<c:if test="${newUser == newLogin}"> --%>
 			<a class="btn btn-danger" href="/logout">Logout</a>
@@ -33,27 +33,29 @@
 		</div>
 	</nav>
 	<h1 class="text-center">Edit Your Art</h1>
-	<form class="d-block border border-dark p-4 card mx-auto w-50">
-		<div class="mb-3">
-		<label path="artName" class="form-label">Art Name</label>
-<%-- 			<form:errors path="artName"/> --%>
-			<input path="artName" class="form-control" type="text" placeholder="Name Here"/>
-		</div>
-		<div class="mb-3">
-		<label path="artData" for="formFile" class="form-label">Description of the art</label>
-<%-- 			<form:errors path="artDescription"/> --%>
-			<textarea path="artDescription" type="text" class="form-control">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum excepturi ducimus assumenda fuga at sint qui fugit aliquid animi doloribus tempora beatae dolores est. Quae labore ad debitis blanditiis sequi.</textarea>
-			
-		</div>
-		<div class="mb-3">
-<%-- 			<form:errors path="artData" /> --%>
-			<label path="artData" for="formFile" class="form-label">Image Upload
-				example</label>
-			<input path="artData" class="form-control" type="file"
-				id="formFile" />
-		</div>
-		<button class="btn btn-info">Submit</button>
-	</form>
+	<div class="d-block border border-dark p-4 card mx-auto w-50">
+		<form:form modelAttribute="art" action="/changes/${art.id}" method="PUT" enctype="multipart/form-data">
+			<form:input type="hidden" path="user"/>
+			<div class="mb-3">
+				<form:label path="artName" class="form-label">Art Name</form:label>
+				<form:errors path="artName"/>
+				<form:input path="artName" class="form-control" type="text" />
+			</div>
+			<div class="mb-3">
+				<form:label path="artDescription" for="formFile" class="form-label">Description of the art</form:label>
+				<form:errors path="artDescription"/>
+				<form:textarea path="artDescription" type="text" class="form-control"></form:textarea>
+
+			</div>
+			<div class="mb-3">
+				<form:errors path="imageName"/>
+				<form:label path="imageName" for="formFile" class="form-label">Image Upload example</form:label>
+				<form:input path="imageName" class="form-control" type="text"
+					name="image" />
+			</div>
+			<button class="btn btn-info">Submit</button>
+		</form:form>
+	</div>
 
 	<script src="https://kit.fontawesome.com/7bd86abbf0.js" crossorigin="anonymous"></script>
 	<script

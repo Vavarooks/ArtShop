@@ -25,8 +25,8 @@
 	<nav class="navbar bg-light">
 		<div class="container-fluid">
 			<a class="btn btn-secondary" href="/view/user">Home</a> <a
-				class="btn btn-secondary" href="/view/gallery">View Your Gallery</a>
-			<a class="btn btn-secondary" href="/upload/art">Upload a piece</a>
+				class="btn btn-secondary" href="/gallery/${user.id}">View Your Gallery</a>
+			<a class="btn btn-secondary" href="/make/art">Upload a piece</a>
 			<%-- 			<c:if test="${newUser == newLogin}"> --%>
 			<a class="btn btn-danger" href="/logout">Logout</a>
 			<%-- 			</c:if>	 --%>
@@ -35,60 +35,20 @@
 	<h1 class="text-center">User Gallery</h1>
 	<div class="d-block p-4 mx-auto w-50">
 		<div class="row g-4">
-			<div class="col-6">
-				<div class="card">
-					<img src="/images/Mountains.png" class="card-img-top image"
-						alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content. This
-							content is a little bit longer.</p>
-						<a class="btn btn-warning" href="/edit/art">Edit</a><a
-							class="btn btn-danger">Delete</a>
+		<c:forEach items="${user.art}" var="art">
+				<div class="col-6">
+					<div class="card">
+						<img src="${art.imageName}" class="card-img-top image"
+							alt="${art.artName}">
+						<div class="card-body">
+							<h5 class="card-title">${art.artName}</h5>
+							<p class="card-text">${art.artDescription}</p>
+							<a class="btn btn-warning" href="/edit/${art.id}">Edit</a><a
+								class="btn btn-danger" href="/delete/${art.id}">Delete</a>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-6">
-				<div class="card">
-					<img src="/images/House.png" class="card-img-top image" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content. This
-							content is a little bit longer.</p>
-						<a class="btn btn-warning" href="/edit/art">Edit</a><a
-							class="btn btn-danger" href="">Delete</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-6">
-				<div class="card">
-					<img src="/images/Lg-Forest.png" class="card-img-top image"
-						alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content.</p>
-						<a class="btn btn-warning" href="/edit/art">Edit</a><a
-							class="btn btn-danger">Delete</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-6">
-				<div class="card">
-					<img src="/images/BW-House.png" class="card-img-top image"
-						alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content. This
-							content is a little bit longer.</p>
-						<a class="btn btn-warning" href="/edit/art">Edit</a><a
-							class="btn btn-danger">Delete</a>
-					</div>
-				</div>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
 

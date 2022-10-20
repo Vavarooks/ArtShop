@@ -1,5 +1,9 @@
 package com.vanessa.ArtPorfolio.Controllers;
 
+
+
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -9,17 +13,23 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.vanessa.ArtPorfolio.Models.Art;
 import com.vanessa.ArtPorfolio.Models.LoginUser;
 import com.vanessa.ArtPorfolio.Models.User;
+import com.vanessa.ArtPorfolio.Services.ArtService;
 import com.vanessa.ArtPorfolio.Services.UserService;
 
 @Controller
 public class UserController {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private ArtService artService;
 
 //	Login / Register Page
 	@GetMapping("/")
@@ -35,36 +45,79 @@ public class UserController {
 	public String viewUser(HttpSession session, Model model) {
 		Long id = (Long) session.getAttribute("id");
 		model.addAttribute("user", userService.findUser(id));
+		List<Art> arts = artService.allArt();
+		model.addAttribute("art", arts);
 		return "view.jsp";
 	}
 	
 //	View Other's Art
-	@RequestMapping("/view/art")
-	public String viewArt(HttpSession session, Model model) {
-		Long id = (Long) session.getAttribute("id");
-		model.addAttribute("user", userService.findUser(id));
+	@RequestMapping("/view/{id}")
+	public String viewArt(@PathVariable("id") Long id, HttpSession session, Model model) {
+		Long userid = (Long) session.getAttribute("id");
+		model.addAttribute("user", userService.findUser(userid));
+		Art arts = artService.getArt(id);
+		model.addAttribute("art", arts);
 		return "art.jsp";
 	}
 	
 //	To View all Self Posted Art
-	@RequestMapping("/view/gallery")
-	public String viewGallery() {
+	@RequestMapping("/gallery/{id}")
+	public String viewGallery(@PathVariable("id") Long id, HttpSession session, Model model) {
+		Long userid = (Long) session.getAttribute("id");
+		model.addAttribute("user", userService.findUser(userid));
 		
 		return "gallery.jsp";
 	}
 	
 //	Make Art
-	@RequestMapping("/upload/art")
-	public String uploadArt() {
+	@GetMapping("/make/art")
+	public String makeArt(@ModelAttribute("newArt")Art art, HttpSession session,Model model) {
+		Long userid = (Long) session.getAttribute("id");
+		model.addAttribute("user", userService.findUser(userid));
 		return "artform.jsp";
 	}
+	
+	@PostMapping("/save")
+	public String saveArt(@Valid @ModelAttribute("newArt") Art art, BindingResult result,Model model){
+		if(result.hasErrors()) {
+			Art arts = new Art();
+			model.addAttribute("art", arts);
+			return "artform.jsp";
+		}
+		else {
+			artService.makeArt(art);
+			return "redirect:/view/user";
+		}
+	}
+
+	
 //	Edit Art
-	@RequestMapping("/edit/art")
-	public String editArt() {
+	@RequestMapping("/edit/{id}")
+	public String editArt(@PathVariable("id") Long id,HttpSession session, Model model) {
+		Long userid = (Long) session.getAttribute("id");
+		model.addAttribute("user", userService.findUser(userid));
+		Art art = artService.getArt(id);
+		model.addAttribute("art", art);
 		return "edit.jsp";
+	}
+	@RequestMapping(value = "/changes/{id}", method = RequestMethod.PUT)
+	public String update(@Valid @ModelAttribute("art") Art art, BindingResult result) {
+		if(result.hasErrors()) {
+			return "edit.jsp";
+		}
+		else {
+			artService.updateArt(art);
+			return "redirect:/gallery/{id}";
+		}
 	}
 	
 //	Delete Art
+	@RequestMapping(value="/delete/{id}")
+	public String delete(@PathVariable("id") Long id) {
+		artService.deleteArt(id);
+		return "redirect:/gallery/{id}";
+	}
+	
 
 //	Registration
 	@PostMapping("/register") 

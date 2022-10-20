@@ -24,63 +24,31 @@
 	<nav class="navbar bg-light">
 		<div class="container-fluid">
 			<a class="btn btn-secondary" href="/view/user">Home</a> <a
-				class="btn btn-secondary" href="/view/gallery">View Your Gallery</a>
-			<a class="btn btn-secondary" href="/upload/art">Upload a piece</a>
+				class="btn btn-secondary" href="/gallery/${user.id}">View Your Gallery</a>
+			<a class="btn btn-secondary" href="/make/art">Upload a piece</a>
 			<%-- 			<c:if test="${newUser == newLogin}"> --%>
 			<a class="btn btn-danger" href="/logout">Logout</a>
 			<%-- 			</c:if>	 --%>
 		</div>
 	</nav>
+
 	<br>
 	<h1 class="text-center">Most Recent Post of Today</h1>
-	<div class="d-block border border-dark p-4 card mx-auto w-50">
-		<div id="carouselExampleCaptions" class="carousel slide"
-			data-bs-ride="false">
-			<div class="carousel-indicators">
-				<button type="button" data-bs-target="#carouselExampleCaptions"
-					data-bs-slide-to="0" class="active" aria-current="true"
-					aria-label="Slide 1"></button>
-				<button type="button" data-bs-target="#carouselExampleCaptions"
-					data-bs-slide-to="1" aria-label="Slide 2"></button>
-				<button type="button" data-bs-target="#carouselExampleCaptions"
-					data-bs-slide-to="2" aria-label="Slide 3"></button>
-			</div>
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<img src="/images/Feilds.png" class="d-block w-100" alt="...">
-					<div class="carousel-caption d-none d-md-block">
-						<h5>Title</h5>
-						<p>Description</p>
-						<a class="btn btn-secondary" href="/view/art">View</a>
+	<div class="d-block border border-dark p-4 card mx-auto w-75">
+		<div class="row row-cols-1 row-cols-md-2 g-4">
+			<c:forEach items="${art}" var="art">
+				<div class="col">
+					<div class="card">
+						<img src="${art.imageName}" class="card-img-top d-block w-100"
+							alt="${art.artName}">
+						<div class="card-body">
+							<h5>${art.artName}</h5>
+							<p class="card-text">${art.artDescription}</p>
+							<a class="btn btn-secondary" href="/view/${art.id}">View</a>
+						</div>
 					</div>
 				</div>
-				<div class="carousel-item">
-					<img src="/images/Forest.png" class="d-block w-100" alt="...">
-					<div class="carousel-caption d-none d-md-block">
-						<h5>Title</h5>
-						<p>Description</p>
-						<a class="btn btn-secondary" href="/view/art">View</a>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<img src="/images/ocean.png" class="d-block w-100" alt="...">
-					<div class="carousel-caption d-none d-md-block">
-						<h5>Title</h5>
-						<p>Description</p>
-						<a class="btn btn-secondary" href="/view/art">View</a>
-					</div>
-				</div>
-			</div>
-			<button class="carousel-control-prev" type="button"
-				data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button"
-				data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
+			</c:forEach>
 		</div>
 	</div>
 

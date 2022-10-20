@@ -115,6 +115,12 @@ public class User {
 		this.createdAt = createdAt;
 	}
 
+	public List<Art> getArt() {
+		return art;
+	}
+	public void setArt(List<Art> art) {
+		this.art = art;
+	}
 	public Date getUpdatedAt() {
 		return updatedAt;
 	}

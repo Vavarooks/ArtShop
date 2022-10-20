@@ -25,30 +25,33 @@
 	<nav class="navbar bg-light">
 		<div class="container-fluid">
 			<a class="btn btn-secondary" href="/view/user">Home</a> <a
-				class="btn btn-secondary" href="/view/gallery">View Your Gallery</a>
-			<a class="btn btn-secondary" href="/upload/art">Upload a piece</a>
+				class="btn btn-secondary" href="/gallery/${user.id}">View Your Gallery</a>
+			<a class="btn btn-secondary" href="/make/art">Upload a piece</a>
 			<%-- 			<c:if test="${newUser == newLogin}"> --%>
 			<a class="btn btn-danger" href="/logout">Logout</a>
 			<%-- 			</c:if>	 --%>
 		</div>
 	</nav>
 	<br>
-	<div class="card d-block border border-dark p-4 mx-auto w-50">
+	<div class="card d-block border border-dark p-4 mx-auto w-75">
 		<div class="card-body">
-			<h5 class="card-title">Art Title</h5>
-			<p class="card-text">The Full Description</p>
-			<p class="card-text">
-				<small class="text-muted">Created By: User1</small>
-			</p>
+			<div class="card-body">
+				<h5>${art.artName}</h5>
+				<p class="card-text">${art.artDescription}</p>
+			</div>	
+				<p class="card-text">
+					<small class="text-muted">Posted by: ${art.user.username}</small>
+				</p>
+			</div>
+			<img src="${art.imageName}" class="card-img-top d-block w-100"
+				alt="${art.artName}">
 		</div>
-		<img src="/images/Feilds.png" class="card-img-bottom" alt="...">
-	</div>
 
 
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-		crossorigin="anonymous"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+			crossorigin="anonymous"></script>
 </body>
 </html>
