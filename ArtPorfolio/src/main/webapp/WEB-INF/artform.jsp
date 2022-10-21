@@ -24,9 +24,10 @@
 
 	<nav class="navbar bg-light">
 		<div class="container-fluid">
+		<h5>Art Board</h5>
 			<a class="btn btn-secondary" href="/view/user">Home</a> <a
 				class="btn btn-secondary" href="/gallery/${user.id}">View Your Gallery</a>
-			<a class="btn btn-secondary" href="/upload/art">Upload a piece</a>
+			<a class="btn btn-secondary" href="/make/art">Upload a piece</a>
 			<%-- 			<c:if test="${newUser == newLogin}"> --%>
 			<a class="btn btn-danger" href="/logout">Logout</a>
 			<%-- 			</c:if>	 --%>
@@ -42,6 +43,11 @@
 				<form:input path="artName" class="form-control" type="text" />
 			</div>
 			<div class="mb-3">
+			<form:label path="painter" class="form-label">Original Artist</form:label>
+				<form:errors path="painter"/>
+				<form:input path="painter" class="form-control" type="text" />
+			</div>
+			<div class="mb-3">
 				<form:label path="artDescription" for="formFile" class="form-label">Description of the art</form:label>
 				<form:errors path="artDescription"/>
 				<form:textarea path="artDescription" type="text" class="form-control"></form:textarea>
@@ -49,7 +55,7 @@
 			</div>
 			<div class="mb-3">
 				<form:errors path="imageName"/>
-				<form:label path="imageName" for="formFile" class="form-label">Put Image URL Here!</form:label>
+				<form:label path="imageName" class="form-label">Put Image URL Here!</form:label>
 				<form:input path="imageName" class="form-control" type="text"
 					name="image" />
 			</div>

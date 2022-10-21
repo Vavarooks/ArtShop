@@ -23,6 +23,7 @@
 <body>
 	<nav class="navbar bg-light">
 		<div class="container-fluid">
+		<h5>Art Board</h5>
 			<a class="btn btn-secondary" href="/view/user">Home</a> <a
 				class="btn btn-secondary" href="/gallery/${user.id}">View Your Gallery</a>
 			<a class="btn btn-secondary" href="/make/art">Upload a piece</a>
@@ -34,17 +35,17 @@
 
 	<br>
 	<h1 class="text-center">Most Recent Post of Today</h1>
-	<div class="d-block border border-dark p-4 card mx-auto w-75">
-		<div class="row row-cols-1 row-cols-md-2 g-4">
+	<div class="d-block p-4 mx-auto w-75">
+		<div class="row row-cols-1 g-4">
 			<c:forEach items="${art}" var="art">
-				<div class="col">
+				<div class="col-4">
 					<div class="card">
 						<img src="${art.imageName}" class="card-img-top d-block w-100"
 							alt="${art.artName}">
 						<div class="card-body">
 							<h5>${art.artName}</h5>
-							<p class="card-text">${art.artDescription}</p>
-							<a class="btn btn-secondary" href="/view/${art.id}">View</a>
+							<p class="card-text fw-lighter fst-italic"> Artist: ${art.painter}</p>
+							<a class="btn btn-secondary" href="/view/${art.id}">View More</a>
 						</div>
 					</div>
 				</div>

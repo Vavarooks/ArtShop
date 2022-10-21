@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -31,6 +30,10 @@ public class Art {
 	@NotEmpty(message = "Must input name for piece")
 	@Size(min = 4, message = "Name must have more than four letters.")
 	private String artName;
+	
+	@NotEmpty(message = "Must have Artist Name")
+	@Size(min = 4, message = "Name must have more than four letters.")
+	private String painter;
 
 	@NotEmpty(message = "Must have a description")
 	@Size(min = 4, message = "Description must have more than four letters.")
@@ -62,6 +65,14 @@ public class Art {
 //	Constructor
 	public Art() {
 
+	}
+
+	public String getPainter() {
+		return painter;
+	}
+
+	public void setPainter(String painter) {
+		this.painter = painter;
 	}
 
 	public Art(String imageName) {

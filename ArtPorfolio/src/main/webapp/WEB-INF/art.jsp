@@ -24,6 +24,7 @@
 
 	<nav class="navbar bg-light">
 		<div class="container-fluid">
+		<h5>Art Board</h5>
 			<a class="btn btn-secondary" href="/view/user">Home</a> <a
 				class="btn btn-secondary" href="/gallery/${user.id}">View Your Gallery</a>
 			<a class="btn btn-secondary" href="/make/art">Upload a piece</a>
@@ -36,12 +37,15 @@
 	<div class="card d-block border border-dark p-4 mx-auto w-75">
 		<div class="card-body">
 			<div class="card-body">
-				<h5>${art.artName}</h5>
-				<p class="card-text">${art.artDescription}</p>
-			</div>	
 				<p class="card-text">
 					<small class="text-muted">Posted by: ${art.user.username}</small>
 				</p>
+				<h5>Art Name: ${art.artName}</h5>
+				<p class="card-text fw-lighter fst-italic">Description: ${art.artDescription}</p>
+			</div>	
+					<p class=" card-text fst-italic">
+						<small class="text-muted">Painted by: ${art.painter}</small>
+					</p>
 			</div>
 			<img src="${art.imageName}" class="card-img-top d-block w-100"
 				alt="${art.artName}">

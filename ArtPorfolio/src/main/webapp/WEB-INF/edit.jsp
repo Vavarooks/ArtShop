@@ -24,9 +24,10 @@
 
 	<nav class="navbar bg-light">
 		<div class="container-fluid">
+		<h5>Art Board</h5>
 			<a class="btn btn-secondary" href="/view/user">Home</a> <a
 				class="btn btn-secondary" href="/gallery/${user.id}">View Your Gallery</a>
-			<a class="btn btn-secondary" href="/upload/art">Upload a piece</a>
+			<a class="btn btn-secondary" href="/make/art">Upload a piece</a>
 			<%-- 			<c:if test="${newUser == newLogin}"> --%>
 			<a class="btn btn-danger" href="/logout">Logout</a>
 			<%-- 			</c:if>	 --%>
@@ -35,11 +36,16 @@
 	<h1 class="text-center">Edit Your Art</h1>
 	<div class="d-block border border-dark p-4 card mx-auto w-50">
 		<form:form modelAttribute="art" action="/changes/${art.id}" method="PUT" enctype="multipart/form-data">
-			<form:input type="hidden" path="user"/>
+			<form:input type="hidden" path="user" value="${user.id}"/>
 			<div class="mb-3">
 				<form:label path="artName" class="form-label">Art Name</form:label>
 				<form:errors path="artName"/>
 				<form:input path="artName" class="form-control" type="text" />
+			</div>
+			<div class="mb-3">
+			<form:label path="painter" class="form-label">Original Artist</form:label>
+				<form:errors path="painter"/>
+				<form:input path="painter" class="form-control" type="text" />
 			</div>
 			<div class="mb-3">
 				<form:label path="artDescription" for="formFile" class="form-label">Description of the art</form:label>
@@ -49,7 +55,7 @@
 			</div>
 			<div class="mb-3">
 				<form:errors path="imageName"/>
-				<form:label path="imageName" for="formFile" class="form-label">Image Upload example</form:label>
+				<form:label path="imageName" class="form-label">Put Image URL Here!</form:label>
 				<form:input path="imageName" class="form-control" type="text"
 					name="image" />
 			</div>
