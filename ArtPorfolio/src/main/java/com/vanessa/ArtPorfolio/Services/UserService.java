@@ -7,6 +7,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import com.vanessa.ArtPorfolio.Models.Art;
 import com.vanessa.ArtPorfolio.Models.LoginUser;
 import com.vanessa.ArtPorfolio.Models.User;
 import com.vanessa.ArtPorfolio.Repos.UserRepo;
@@ -89,6 +90,5 @@ public class UserService {
 			return null;
 		}
 	}
-	
 
 }

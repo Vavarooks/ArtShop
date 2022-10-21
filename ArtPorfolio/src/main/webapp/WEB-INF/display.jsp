@@ -36,7 +36,7 @@
 	<h1 class="text-center">User Gallery</h1>
 	<div class="d-block p-4 mx-auto w-50">
 		<div class="row g-4">
-		<c:forEach items="${user.art}" var="art">
+		<c:forEach items="${oneUser.art}" var="art">
 				<div class="col-6">
 					<div class="card">
 						<img src="${art.imageName}" class="card-img-top image"
@@ -45,8 +45,6 @@
 							<h5 class="card-title">Art Name: ${art.artName}</h5>
 							<p class="card-text fst-italic">Description: ${art.artDescription}</p>
 							<p class="card-text fw-lighter  fst-italic">Original Artist: ${art.painter}</p>
-							<a class="btn btn-warning" href="/edit/${art.id}">Edit</a><a
-								class="btn btn-danger" href="/delete/${art.id}">Delete</a>
 						</div>
 					</div>
 				</div>

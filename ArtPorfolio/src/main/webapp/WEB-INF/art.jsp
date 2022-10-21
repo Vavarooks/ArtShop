@@ -38,7 +38,7 @@
 		<div class="card-body">
 			<div class="card-body">
 				<p class="card-text">
-					<small class="text-muted">Posted by: ${art.user.username}</small>
+					<small class="text-muted">Posted by: <a href="/display/${art.user.id}">${art.user.username}</a></small>
 				</p>
 				<h5>Art Name: ${art.artName}</h5>
 				<p class="card-text fw-lighter fst-italic">Description: ${art.artDescription}</p>

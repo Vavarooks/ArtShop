@@ -69,6 +69,14 @@ public class UserController {
 		return "gallery.jsp";
 	}
 	
+//	To View someone else's work
+	@GetMapping("/display/{id}")
+	public String viewDisplay(@PathVariable("id") Long id, Model model) {
+		User oneUser = userService.findUser(id);
+		model.addAttribute("oneUser", oneUser);
+		return "display.jsp";
+	}
+	
 //	Make Art
 	@GetMapping("/make/art")
 	public String makeArt(@ModelAttribute("newArt")Art art, HttpSession session,Model model) {

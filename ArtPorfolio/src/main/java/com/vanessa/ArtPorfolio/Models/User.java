@@ -115,6 +115,7 @@ public class User {
 		this.createdAt = createdAt;
 	}
 
+	
 	public List<Art> getArt() {
 		return art;
 	}
