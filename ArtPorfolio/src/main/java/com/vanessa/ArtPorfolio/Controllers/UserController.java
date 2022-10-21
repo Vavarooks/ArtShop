@@ -71,7 +71,9 @@ public class UserController {
 	
 //	To View someone else's work
 	@GetMapping("/display/{id}")
-	public String viewDisplay(@PathVariable("id") Long id, Model model) {
+	public String viewDisplay(@PathVariable("id") Long id, HttpSession session, Model model) {
+		Long userid = (Long) session.getAttribute("id");
+		model.addAttribute("user", userService.findUser(userid));
 		User oneUser = userService.findUser(id);
 		model.addAttribute("oneUser", oneUser);
 		return "display.jsp";

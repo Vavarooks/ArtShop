@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/styles.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -20,7 +20,7 @@
 	crossorigin="anonymous">
 <title>Artist Board</title>
 </head>
-<body>
+<body class="brick">
 	<nav class="navbar bg-light">
 		<div class="container-fluid">
 		<h5>Art Board</h5>
@@ -34,13 +34,13 @@
 	</nav>
 
 	<br>
-	<h1 class="text-center">Most Recent Post of Today</h1>
+	<h1 class="text-center font">Most Recent Post of Today</h1>
 	<div class="d-block p-4 mx-auto w-75">
 		<div class="row row-cols-1 g-4">
 			<c:forEach items="${art}" var="art">
 				<div class="col-4">
 					<div class="card">
-						<img src="${art.imageName}" class="card-img-top d-block w-100"
+						<img src="${art.imageName}" class="card-img-top img d-block"
 							alt="${art.artName}">
 						<div class="card-body">
 							<h5>${art.artName}</h5>

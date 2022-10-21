@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/styles.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -20,7 +20,7 @@
 	crossorigin="anonymous">
 <title>Artist Board</title>
 </head>
-<body>
+<body class="splatter">
 
 	<nav class="navbar bg-light">
 		<div class="container-fluid">
@@ -33,8 +33,9 @@
 			<%-- 			</c:if>	 --%>
 		</div>
 	</nav>
-	<h1 class="text-center">Upload Art Here</h1>
+	<br/>
 	<div class="d-block border border-dark p-4 card mx-auto w-50">
+	<h1 class="text-center">Upload Art Here</h1>
 		<form:form modelAttribute="newArt" action="/save" method="POST" enctype="multipart/form-data">
 			<form:input type="hidden" path="user" value="${user.id}"/>
 			<div class="mb-3">

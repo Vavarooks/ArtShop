@@ -3,17 +3,18 @@
 	padding: 0;
 	
 }
-body{
-	background-color: #9f7580;
-	background-image: url(/test.html);
+.splatter{
+	background-image: url("https://wallpapertag.com/wallpaper/full/2/1/c/507672-free-download-splatter-paint-wallpaper-1920x1200-iphone.jpg");
+}
+.brick{
+	background-image: url("https://cdn.discordapp.com/attachments/1032841694279909388/1033092213376303165/brick.jpg");
 }
 
-.image{
-	width: 100px;
-	height: 50px; 
-}
-.card-img-top{
+.img{
 	padding: 15px;
 	width: 100px;
-	height: 50px;
+	height: 250px;
+}
+.font{
+	color: white;
 }

@@ -20,7 +20,13 @@
 	crossorigin="anonymous">
 <title>Artist Board</title>
 </head>
-<body>
+<body class="splatter">
+<nav class="navbar bg-light">
+		<div class="container-fluid">
+		<h5>Art Board</h5>
+		</div>
+	</nav>
+	<br/>
 	<div class="d-flex">
 		<div class="d-block border border-dark p-4 card mx-auto w-50">
 			<h1>Register</h1>
